@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * is_cdir - checks ":" if is in the current directory.
- * @path: type char pointer char.
- * @i: type int pointer of index.
- * Return: 1 if the path is searchable in the cd, 0 otherwise.
+ * is_cdir - Checks if a character ":" is in the current directory.
+ * @path: A character pointer representing the path.
+ * @i: A pointer to an integer index.
+ * Return: 1 if the path can be searched in the current directory, 0 otherwise.
  */
 int is_cdir(char *path, int *i)
 {
@@ -23,11 +23,11 @@ int is_cdir(char *path, int *i)
 }
 
 /**
- * _which - locates a command
+ * _which - Locates a command to be used.
  *
- * @cmd: command name
- * @_environ: environment variable
- * Return: location of the command.
+ * @cmd: The command name.
+ * @_environ: The environment variable.
+ * Return: The location of the command.
  */
 char *_which(char *cmd, char **_environ)
 {
@@ -73,10 +73,10 @@ char *_which(char *cmd, char **_environ)
 }
 
 /**
- * is_executable - determines if is an executable
+ * is_executable - Determines if a file is executable.
  *
- * @datash: data structure
- * Return: 0 if is not an executable, other number if it does
+ * @datash: A data structure.
+ * Return: 0 if it's not executable, otherwise the length of the file name.
  */
 int is_executable(data_shell *datash)
 {
@@ -118,11 +118,11 @@ int is_executable(data_shell *datash)
 }
 
 /**
- * check_error_cmd - verifies if user has permissions to access
+ * check_error_cmd - Verifies if the user has permissions to access a file.
  *
- * @dir: destination directory
- * @datash: data structure
- * Return: 1 if there is an error, 0 if not
+ * @dir: Destination directory.
+ * @datash: A data structure.
+ * Return: 1 if there is an error, 0 if not.
  */
 int check_error_cmd(char *dir, data_shell *datash)
 {
@@ -155,9 +155,9 @@ int check_error_cmd(char *dir, data_shell *datash)
 }
 
 /**
- * cmd_exec - executes command lines
+ * cmd_exec - Executes command lines.
  *
- * @datash: data relevant (args and input)
+ * @datash: A data structure containing arguments and input.
  * Return: 1 on success.
  */
 int cmd_exec(data_shell *datash)
@@ -167,7 +167,7 @@ int cmd_exec(data_shell *datash)
 	int state;
 	int exec;
 	char *dir;
-	(void) wpd;
+	(void)wpd;
 
 	exec = is_executable(datash);
 	if (exec == -1)
@@ -199,7 +199,6 @@ int cmd_exec(data_shell *datash)
 			wpd = waitpid(pd, &state, WUNTRACED);
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
-
 	datash->status = state / 256;
 	return (1);
 }
